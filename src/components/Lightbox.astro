@@ -1,0 +1,91 @@
+---
+---
+<div
+  id="lightbox"
+  class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image viewer"
+>
+  <button
+    id="lightbox-close"
+    type="button"
+    class="absolute top-4 right-4 flex size-10 items-center justify-center rounded-full border border-sand-50/30 bg-black/60 text-sand-50 transition-colors hover:bg-mustard-500"
+    aria-label="Close image"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      class="size-5"
+      aria-hidden="true"
+    >
+      <path d="M6 6l12 12M18 6L6 18"></path>
+    </svg>
+  </button>
+  <img
+    id="lightbox-img"
+    src=""
+    alt=""
+    class="max-h-[85vh] max-w-full rounded-sm object-contain shadow-2xl"
+  />
+</div>
+
+<script>
+  const overlay = document.getElementById('lightbox');
+  const img = document.getElementById('lightbox-img');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  if (overlay && img) {
+    const isOpen = () => !overlay.classList.contains('hidden');
+
+    const open = (src: string | null, alt: string | null) => {
+      if (!src) return;
+      img.src = src;
+      img.alt = alt ?? '';
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      document.documentElement.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+      img.src = '';
+      document.documentElement.style.overflow = '';
+    };
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const trigger = target.closest('[data-lightbox-src]');
+      if (trigger) {
+        event.preventDefault();
+        open(trigger.getAttribute('data-lightbox-src'), trigger.getAttribute('data-lightbox-alt'));
+        return;
+      }
+
+      if (target === overlay || target.closest('#lightbox-close')) close();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isOpen()) {
+        close();
+        return;
+      }
+
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const trigger = target.closest('[data-lightbox-src]');
+      if (trigger) {
+        event.preventDefault();
+        open(trigger.getAttribute('data-lightbox-src'), trigger.getAttribute('data-lightbox-alt'));
+      }
+    });
+  }
+</script>

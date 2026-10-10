@@ -1,0 +1,154 @@
+---
+import { menu, bowls } from '../data/menu';
+
+const desktopLinks = [
+  { href: '#top', label: 'Home' },
+  { href: '#tacos', label: 'Tacos' },
+  { href: '#fajitas', label: 'Fajitas' },
+  { href: '#burritos', label: 'Burritos' },
+  { href: `#${bowls.id}`, label: bowls.title },
+  { href: '#info', label: 'Info' },
+];
+
+const mobileLinks = [
+  { href: '#top', label: 'Home' },
+  ...menu.map((s) => ({ href: `#${s.id}`, label: s.title })),
+  { href: `#${bowls.id}`, label: bowls.title },
+  { href: '#meat-options', label: 'Meat Options' },
+  { href: '#info', label: 'Info' },
+];
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-40 border-b border-night-700 bg-night-950/85 backdrop-blur-md"
+>
+  <div class="mx-auto flex h-14 max-w-6xl items-center px-5 sm:px-8 md:h-16">
+    <a href="#top" class="section-title text-base text-mustard-400 sm:text-lg">
+      Maria's<span class="text-cactus-400"> Taqueria</span>
+    </a>
+
+    <ul class="ml-auto hidden items-center gap-5 md:flex lg:gap-6">
+      {
+        desktopLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-sand-200/80 transition-colors hover:text-mustard-400"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <button
+      id="menu-toggle"
+      type="button"
+      class="ml-auto -mr-2 flex size-10 items-center justify-center text-mustard-400 transition-colors hover:text-sand-100 md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <svg
+        id="icon-open"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        class="size-6"
+        aria-hidden="true"
+      >
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg
+        id="icon-close"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        class="hidden size-6"
+        aria-hidden="true"
+      >
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    aria-label="Main menu"
+    class="absolute inset-x-0 top-full hidden border-b border-night-700 bg-night-950/95 backdrop-blur-md md:hidden"
+  >
+    <ul class="mx-auto max-w-6xl px-5 py-1 sm:px-8">
+      {
+        mobileLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="flex items-center justify-between border-b border-night-700/60 py-3 text-sm font-medium uppercase tracking-[0.15em] text-sand-200/85 transition-colors hover:text-mustard-400"
+            >
+              {link.label}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="size-4 text-cactus-500"
+                aria-hidden="true"
+              >
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('menu-toggle');
+  const panel = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  if (header && toggle && panel) {
+    const setOpen = (open: boolean) => {
+      panel.classList.toggle('hidden', !open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      iconOpen?.classList.toggle('hidden', open);
+      iconClose?.classList.toggle('hidden', !open);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(panel.classList.contains('hidden'));
+    });
+
+    panel.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !header.contains(event.target)) setOpen(false);
+    });
+
+    window.matchMedia('(min-width: 768px)').addEventListener('change', (event) => {
+      if (event.matches) setOpen(false);
+    });
+  }
+</script>

@@ -1,0 +1,68 @@
+---
+import { Image, getImage } from 'astro:assets';
+import interiorImg from '../assets/img/interior.jpeg';
+import { restaurant } from '../data/restaurant';
+
+const interiorFull = await getImage({ src: interiorImg, width: 1600, format: 'webp' });
+---
+
+<section id="top" class="relative flex min-h-screen items-center pt-16">
+  <div
+    class="absolute inset-0 opacity-40"
+    style="background: radial-gradient(ellipse at 50% 0%, #faf1e0 0%, #f3e9d7 45%, #e8d9bc 80%);"
+  >
+  </div>
+
+  <div class="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-2">
+    <div class="flex flex-col items-start gap-6">
+      <span
+        class="rounded-full border border-cactus-600/60 bg-cactus-800/40 px-4 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.3em] text-cactus-300"
+      >
+        {restaurant.services.join(' · ')}
+      </span>
+
+      <h1 class="section-title text-5xl leading-[1.05] text-mustard-400 sm:text-6xl lg:text-7xl">
+        Maria's
+        <span class="block text-sand-100">Taqueria</span>
+      </h1>
+
+      <p class="max-w-md text-xl font-medium uppercase tracking-[0.2em] text-sand-200/85">
+        {restaurant.slogan}
+      </p>
+
+      <p class="max-w-md text-base leading-relaxed text-sand-200/70">
+        Street tacos, sizzling fajitas, oversized burritos and fresh mariscos — charbroiled
+        and served hot the way Spokane Valley loves them.
+      </p>
+    </div>
+
+    <div class="relative">
+      <div
+        class="relative w-full cursor-zoom-in overflow-hidden rounded-sm border border-mustard-600/40 shadow-[0_25px_60px_-20px_rgba(0,0,0,0.25)] transition-colors hover:border-mustard-500"
+        style="aspect-ratio: 16 / 9;"
+        data-lightbox-src={interiorFull.src}
+        data-lightbox-alt="Interior — Maria's Taqueria"
+        role="button"
+        tabindex="0"
+        aria-label="View interior photo full size"
+      >
+        <Image
+          src={interiorImg}
+          alt="Interior — Maria's Taqueria"
+          width={1024}
+          height={576}
+          format="webp"
+          loading="eager"
+          class="h-full w-full object-cover"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
+      </div>
+      <div
+        class="absolute -bottom-5 -left-2 rounded-sm border border-mustard-500/50 bg-night-900 px-5 py-3 sm:-left-5"
+      >
+        <p class="text-[0.65rem] uppercase tracking-[0.3em] text-sand-300/70">Dine-in &amp; to go</p>
+        <p class="section-title text-lg text-mustard-400">{restaurant.phone}</p>
+      </div>
+    </div>
+  </div>
+</section>

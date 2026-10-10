@@ -1,0 +1,40 @@
+---
+import type { MenuItem } from '../data/menu';
+
+interface Props {
+  item: MenuItem;
+}
+
+const { item } = Astro.props;
+---
+
+<article
+  class="group flex flex-col gap-2 rounded-sm border border-night-700 bg-night-800/40 p-4 transition-colors duration-300 hover:border-mustard-500/40 sm:flex-row sm:items-start sm:gap-5"
+>
+  <div class="flex flex-1 flex-col gap-2">
+    <div class="flex items-baseline gap-3">
+      <h3 class="section-title flex-1 text-base text-mustard-400">{item.name}</h3>
+      <span class="shrink-0 font-semibold text-cactus-400">{item.price}</span>
+    </div>
+
+    <p class="text-sm leading-relaxed text-sand-200/75">{item.description}</p>
+
+    {
+      item.extras && (
+        <p class="w-fit rounded-sm border border-dashed border-night-600 bg-night-900/60 px-3 py-1.5 text-xs text-mustard-400/90">
+          {item.extras}
+        </p>
+      )
+    }
+  </div>
+
+  {
+    item.tag && (
+      <span
+        class="w-fit shrink-0 self-start rounded-full border border-cactus-600/60 bg-cactus-800/40 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-cactus-300"
+      >
+        {item.tag}
+      </span>
+    )
+  }
+</article>

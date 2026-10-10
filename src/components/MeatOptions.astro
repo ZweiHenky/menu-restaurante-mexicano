@@ -1,0 +1,62 @@
+---
+import { meatOptions } from '../data/restaurant';
+---
+
+<section
+  id="meat-options"
+  class="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8"
+  aria-label="Meat options"
+>
+  <div
+    class="rounded-sm border border-cactus-600/50 bg-cactus-800/25 p-6 sm:p-8"
+  >
+    <header class="mb-6 flex flex-col items-center gap-2 text-center">
+      <span class="text-xs font-semibold uppercase tracking-[0.4em] text-cactus-300">
+        Choose your meat
+      </span>
+      <h2 class="section-title text-2xl text-sand-100 sm:text-3xl">Meat Options</h2>
+    </header>
+
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
+      <div>
+        <h3 class="mb-3 border-b border-cactus-600/50 pb-2 text-sm font-semibold uppercase tracking-[0.2em] text-mustard-400">
+          General
+        </h3>
+        <ul class="grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
+          {
+            meatOptions.general.map((meat) => (
+              <li class="flex items-baseline justify-between gap-2 border-b border-night-700/70 py-1.5 text-sm">
+                <span class="font-medium text-sand-100">{meat.label}</span>
+                <span class="text-right text-xs text-sand-200/70">{meat.value}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="mb-3 border-b border-cactus-600/50 pb-2 text-sm font-semibold uppercase tracking-[0.2em] text-mustard-400">
+          For Burritos Básico &amp; Supremo
+        </h3>
+        <ul class="grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
+          {
+            meatOptions.burritos.map((meat) => (
+              <li class="flex items-baseline justify-between gap-2 border-b border-night-700/70 py-1.5 text-sm">
+                <span class="font-medium text-sand-100">{meat.label}</span>
+                <span
+                  class={
+                    meat.value === '+$3'
+                      ? 'text-xs font-semibold text-terra-500'
+                      : 'text-xs text-sand-200/70'
+                  }
+                >
+                  {meat.value}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

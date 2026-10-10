@@ -1,0 +1,70 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { MenuItem } from '../data/menu';
+
+interface Props {
+  item: MenuItem;
+}
+
+const { item } = Astro.props;
+
+const lightboxImage = item.image
+  ? await getImage({ src: item.image, width: 1400, format: 'webp' })
+  : undefined;
+---
+
+<article
+  class="group flex flex-col gap-4 rounded-sm border border-night-700 bg-night-800/60 p-4 transition-colors duration-300 hover:border-mustard-500/50"
+>
+  {
+    item.image && (
+      <div
+        class="relative w-full cursor-zoom-in overflow-hidden rounded-sm border border-night-700 transition-colors hover:border-mustard-500/60"
+        style="aspect-ratio: 16 / 10;"
+        data-lightbox-src={lightboxImage?.src}
+        data-lightbox-alt={item.name}
+        role="button"
+        tabindex="0"
+        aria-label={`View ${item.name} full size`}
+      >
+        <Image
+          src={item.image}
+          alt={item.name}
+          width={800}
+          height={500}
+          format="webp"
+          loading="lazy"
+          class="h-full w-full object-cover transition-transform duration-500 [@media(hover:hover)]:group-hover:scale-102"
+        />
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
+      </div>
+    )
+  }
+
+  <div class="flex items-baseline gap-3">
+    <h3 class="section-title flex-1 text-lg text-mustard-400">{item.name}</h3>
+    <span class="shrink-0 font-semibold text-cactus-400">{item.price}</span>
+  </div>
+
+  <div class="h-px w-full bg-night-600"></div>
+
+  <p class="text-sm leading-relaxed text-sand-200/75">{item.description}</p>
+
+  {
+    item.extras && (
+      <p class="rounded-sm border border-dashed border-night-600 bg-night-900/60 px-3 py-2 text-xs text-mustard-400/90">
+        {item.extras}
+      </p>
+    )
+  }
+
+  {
+    item.tag && (
+      <span
+        class="w-fit rounded-full border border-cactus-600/60 bg-cactus-800/40 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-cactus-300"
+      >
+        {item.tag}
+      </span>
+    )
+  }
+</article>

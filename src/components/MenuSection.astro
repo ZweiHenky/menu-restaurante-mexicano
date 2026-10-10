@@ -1,0 +1,45 @@
+---
+import MenuItem from './MenuItem.astro';
+import MenuItemRow from './MenuItemRow.astro';
+import type { MenuSection } from '../data/menu';
+
+interface Props {
+  section: MenuSection;
+}
+
+const { section } = Astro.props;
+
+const itemsWithImage = section.items.filter((item) => item.image);
+const itemsWithoutImage = section.items.filter((item) => !item.image);
+---
+
+<section id={section.id} class="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8">
+  <header class="mb-10 flex flex-col items-center gap-3 text-center">
+    <div class="flex items-center gap-4 text-mustard-500">
+      <span class="h-px w-10 bg-mustard-600/70"></span>
+      <span class="text-xs font-semibold uppercase tracking-[0.4em]">{section.subtitle}</span>
+      <span class="h-px w-10 bg-mustard-600/70"></span>
+    </div>
+    <h2 class="section-title text-4xl text-sand-100 sm:text-5xl">{section.title}</h2>
+  </header>
+
+  {
+    itemsWithImage.length > 0 && (
+      <div class="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {itemsWithImage.map((item) => (
+          <MenuItem item={item} />
+        ))}
+      </div>
+    )
+  }
+
+  {
+    itemsWithoutImage.length > 0 && (
+      <div class="flex flex-col gap-4">
+        {itemsWithoutImage.map((item) => (
+          <MenuItemRow item={item} />
+        ))}
+      </div>
+    )
+  }
+</section>

@@ -1,0 +1,45 @@
+---
+import { menu, bowls } from '../data/menu';
+import { restaurant } from '../data/restaurant';
+
+const links = [
+  ...menu.map((section) => ({ href: `#${section.id}`, label: section.title })),
+  { href: `#${bowls.id}`, label: bowls.title },
+  { href: '#meat-options', label: 'Meat Options' },
+  { href: '#info', label: 'Visit Us' },
+];
+---
+
+<footer class="border-t border-night-700 bg-night-900">
+  <div class="mx-auto flex max-w-6xl flex-col items-center gap-6 px-5 py-12 text-center sm:px-8">
+    <a href="#top" class="section-title text-2xl text-mustard-400">
+      Maria's<span class="text-cactus-400"> Taqueria</span>
+    </a>
+
+    <p class="text-sm uppercase tracking-[0.25em] text-cactus-300">{restaurant.slogan}</p>
+
+    <ul class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="text-xs uppercase tracking-[0.2em] text-sand-200/60 transition-colors hover:text-mustard-400"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex flex-col items-center gap-1 text-sm text-sand-200/70">
+      <span>{restaurant.address}</span>
+      <span class="text-sand-200/50">{restaurant.services.join(' · ')}</span>
+    </div>
+
+    <p class="text-xs text-sand-200/40">
+      © {new Date().getFullYear()} {restaurant.name} · Spokane Valley, WA
+    </p>
+  </div>
+</footer>

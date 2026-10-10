@@ -1,0 +1,72 @@
+---
+import { Image, getImage } from 'astro:assets';
+import exteriorImg from '../assets/img/exterior.jpeg';
+import { restaurant } from '../data/restaurant';
+
+const exteriorFull = await getImage({ src: exteriorImg, width: 1200, format: 'webp' });
+
+const details = [
+  {
+    title: 'Services',
+    lines: [...restaurant.services],
+  },
+  {
+    title: 'Location',
+    lines: [restaurant.street, restaurant.city, 'United States'],
+  },
+  {
+    title: 'Contact',
+    lines: [restaurant.instagram],
+  },
+];
+---
+
+<section id="info" class="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8">
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+    <div
+      class="relative w-full cursor-zoom-in overflow-hidden rounded-sm border border-night-700 transition-colors hover:border-mustard-500/60 lg:h-full"
+      style="aspect-ratio: 3 / 4;"
+      data-lightbox-src={exteriorFull.src}
+      data-lightbox-alt="Exterior — Maria's Taqueria"
+      role="button"
+      tabindex="0"
+      aria-label="View exterior photo full size"
+    >
+      <Image
+        src={exteriorImg}
+        alt="Exterior — Maria's Taqueria"
+        width={576}
+        height={768}
+        format="webp"
+        loading="lazy"
+        class="h-full w-full object-cover"
+      />
+    </div>
+
+    <div class="flex flex-col justify-center gap-8">
+      <header class="flex flex-col gap-3">
+        <div class="flex items-center gap-4 text-mustard-500">
+          <span class="h-px w-10 bg-mustard-600/70"></span>
+          <span class="text-xs font-semibold uppercase tracking-[0.4em]">Visit us</span>
+        </div>
+        <h2 class="section-title text-4xl text-sand-100 sm:text-5xl">{restaurant.name}</h2>
+        <p class="text-sm uppercase tracking-[0.25em] text-cactus-300">{restaurant.slogan}</p>
+      </header>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {
+          details.map((block) => (
+            <div class="border-t border-night-600 pt-4">
+              <h3 class="section-title mb-2 text-sm text-cactus-400">{block.title}</h3>
+              <ul class="space-y-1 text-sm text-sand-200/75">
+                {block.lines.map((line) => (
+                  <li>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import NoticeBanner from '../components/NoticeBanner.astro';
+import MenuSection from '../components/MenuSection.astro';
+import MeatOptions from '../components/MeatOptions.astro';
+import BurritoBowls from '../components/BurritoBowls.astro';
+import Info from '../components/Info.astro';
+import { menu } from '../data/menu';
+
+// Bowls render as their own block right after the Burritos section.
+const splitAt = menu.findIndex((section) => section.id === 'burritos') + 1;
+const [specialties, tacos, ...beforeBowls] = menu.slice(0, splitAt);
+const afterBowls = menu.slice(splitAt);
+---
+
+<BaseLayout>
+  <Hero />
+  <NoticeBanner />
+
+  <MenuSection section={specialties} />
+  <MeatOptions />
+  <MenuSection section={tacos} />
+  {beforeBowls.map((section) => <MenuSection section={section} />)}
+  <BurritoBowls />
+  {afterBowls.map((section) => <MenuSection section={section} />)}
+  <Info />
+</BaseLayout>
