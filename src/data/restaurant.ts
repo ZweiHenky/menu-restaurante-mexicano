@@ -13,6 +13,10 @@ export const restaurant = {
   phone: '(509) 816-2348',
   phoneHref: 'tel:+15098162348',
   notice: 'CALL AHEAD FOR ORDERS TO GO',
+  notasGenerales: [
+    'First basket of warm chips and house salsa is complimentary. Additional basket: $2.99',
+    'Extra salsa: $1.00',
+  ],
   instagram: '@mariastacoccomer',
 } as const;
 

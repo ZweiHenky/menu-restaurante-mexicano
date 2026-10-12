@@ -42,13 +42,23 @@ const lightboxImage = item.image
   }
 
   <div class="flex items-baseline gap-3">
-    <h3 class="section-title flex-1 text-lg text-mustard-400">{item.name}</h3>
-    <span class="shrink-0 font-semibold text-cactus-400">{item.price}</span>
+    <h3 class="flex-1 text-base font-semibold leading-snug text-sand-100 sm:text-lg">{item.name}</h3>
+    {item.price && <span class="shrink-0 text-lg font-bold text-cactus-400">{item.price}</span>}
   </div>
 
   <div class="h-px w-full bg-night-600"></div>
 
-  <p class="text-sm leading-relaxed text-sand-200/75">{item.description}</p>
+  {item.description && <p class="text-sm leading-relaxed text-sand-200">{item.description}</p>}
+
+  {
+    item.opciones && (
+      <ul class="flex flex-wrap gap-2">
+        {item.opciones.map((opcion) => (
+          <li class="rounded-sm border border-night-600 bg-night-900/60 px-2.5 py-1 text-xs text-sand-200/80">{opcion}</li>
+        ))}
+      </ul>
+    )
+  }
 
   {
     item.extras && (
