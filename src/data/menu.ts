@@ -16,6 +16,8 @@ import burritos2Img from '../assets/img/burritos_2.png';
 import tortasImg from '../assets/img/tortas.png';
 import quesadillaImg from '../assets/img/quesadilla.png';
 import burritosBowlsImg from '../assets/img/burritos_bowls.png';
+import flautasImg from '../assets/img/flautas.jpeg';
+import chickenTaquitosImg from '../assets/img/chiken_taquitos.jpeg';
 
 export interface MenuItem {
   name: string;
@@ -128,8 +130,9 @@ export const menu: MenuSection[] = [
       {
         name: 'Flautas De Pollo',
         description:
-          'Two large flautas made with corn tortillas filled with Chicken, deep fried topped with, sour cream, cotija cheese, lettuce, tomatoes, served with rice and beans.',
+          'Two large flautas made with corn tortillas filled with shredded beef OR Chicken, deep fried topped with, sour cream, cotija cheese, lettuce, tomatoes, served with rice and beans.',
         price: '$16.95',
+        image: flautasImg,
       },
       {
         name: 'Chimichanga',
@@ -162,7 +165,7 @@ export const menu: MenuSection[] = [
       {
         name: 'Enchiladas Rojas or Verdes',
         description:
-          'Two enchiladas filled with Chicken ONLY topped with your choice of green tomatillo sauce or red mole sauce, sour cream, cotija cheese, lettuce, tomatoes, served with rice and beans.',
+          'Two enchiladas filled with shredded beef OR Chicken topped with your choice of green tomatillo sauce or red mole sauce, sour cream, cotija cheese, lettuce, tomatoes, served with rice and beans.',
         price: '$16.95',
         image: enchiladas,
       },
@@ -171,6 +174,7 @@ export const menu: MenuSection[] = [
         description:
           'Flour tortillas deep fried and filled with chicken and cheese, garnished with lettuce, pico de gallo, sour cream, cotija, and guacamole.',
         price: '$13.99',
+        image: chickenTaquitosImg,
       },
     ],
   },

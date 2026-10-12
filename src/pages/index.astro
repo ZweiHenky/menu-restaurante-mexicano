@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import CategoryNav from '../components/CategoryNav.astro';
 import NoticeBanner from '../components/NoticeBanner.astro';
 import MenuSection from '../components/MenuSection.astro';
 import MeatOptions from '../components/MeatOptions.astro';
@@ -17,6 +18,7 @@ const afterBowls = menu.slice(splitAt);
 <BaseLayout>
   <Hero />
   <NoticeBanner />
+  <CategoryNav />
 
   <MenuSection section={specialties} />
   <MeatOptions />

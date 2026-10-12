@@ -14,17 +14,16 @@ const lightboxImage = item.image
 ---
 
 <article
-  class="group flex flex-col gap-4 rounded-sm border border-night-700 bg-night-800/60 p-4 transition-colors duration-300 hover:border-mustard-500/50"
+  class="group flex min-w-0 flex-col gap-3"
 >
   {
     item.image && (
-      <div
-        class="relative w-full cursor-zoom-in overflow-hidden rounded-sm border border-night-700 transition-colors hover:border-mustard-500/60"
+      <button
+        type="button"
+        class="relative w-full cursor-zoom-in overflow-hidden rounded-lg bg-night-800"
         style="aspect-ratio: 16 / 10;"
         data-lightbox-src={lightboxImage?.src}
         data-lightbox-alt={item.name}
-        role="button"
-        tabindex="0"
         aria-label={`View ${item.name} full size`}
       >
         <Image
@@ -36,17 +35,14 @@ const lightboxImage = item.image
           loading="lazy"
           class="h-full w-full object-cover transition-transform duration-500 [@media(hover:hover)]:group-hover:scale-102"
         />
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 to-transparent"></div>
-      </div>
+      </button>
     )
   }
 
   <div class="flex items-baseline gap-3">
-    <h3 class="flex-1 text-base font-semibold leading-snug text-sand-100 sm:text-lg">{item.name}</h3>
-    {item.price && <span class="shrink-0 text-lg font-bold text-cactus-400">{item.price}</span>}
+    <h3 class="min-w-0 flex-1 text-lg font-semibold leading-snug text-sand-100">{item.name}</h3>
+    {item.price && <span class="menu-price shrink-0 text-lg font-bold text-cactus-400">{item.price}</span>}
   </div>
-
-  <div class="h-px w-full bg-night-600"></div>
 
   {item.description && <p class="text-sm leading-relaxed text-sand-200">{item.description}</p>}
 
@@ -62,7 +58,7 @@ const lightboxImage = item.image
 
   {
     item.extras && (
-      <p class="rounded-sm border border-dashed border-night-600 bg-night-900/60 px-3 py-2 text-xs text-mustard-400/90">
+      <p class="text-sm font-medium text-cactus-400">
         {item.extras}
       </p>
     )
@@ -71,7 +67,7 @@ const lightboxImage = item.image
   {
     item.tag && (
       <span
-        class="w-fit rounded-full border border-cactus-600/60 bg-cactus-800/40 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-cactus-300"
+        class="menu-tag w-fit"
       >
         {item.tag}
       </span>

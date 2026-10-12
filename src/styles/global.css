@@ -32,6 +32,7 @@
 
   --color-terra-500: #a65d3b;
   --color-terra-600: #8c4a2e;
+  --color-chile: #a83232;
 
   --font-display: "Rye", "Georgia", serif;
   --font-body: "Space Grotesk", system-ui, sans-serif;
@@ -39,12 +40,12 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 8rem;
 }
 
 @media (min-width: 768px) {
   html {
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 8.5rem;
   }
 }
 
@@ -70,6 +71,84 @@ body::after {
   font-family: var(--font-display);
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.menu-heading {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.menu-section-heading {
+  border-bottom: 1px solid var(--color-night-600);
+  padding-bottom: 1.5rem;
+}
+
+.menu-price {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 70;
+  padding: 0.75rem 1rem;
+  background: var(--color-cactus-400);
+  color: var(--color-sand-50);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.menu-tag {
+  color: var(--color-chile);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.category-nav {
+  position: sticky;
+  top: 3.5rem;
+  z-index: 30;
+  border-block: 1px solid var(--color-night-700);
+  background: var(--color-night-800);
+}
+
+.category-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-night-600) transparent;
+}
+
+.category-link {
+  padding-block: 1rem;
+  border-bottom: 3px solid transparent;
+  color: var(--color-sand-300);
+  font-size: 0.875rem;
+  font-weight: 500;
+  touch-action: manipulation;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+
+.category-link:hover {
+  color: var(--color-cactus-400);
+  border-bottom-color: var(--color-night-600);
+}
+
+.category-link[aria-current] {
+  color: var(--color-cactus-400);
+  border-bottom-color: var(--color-cactus-400);
+}
+
+.category-link:focus-visible {
+  outline-offset: -4px;
+}
+
+@media (min-width: 768px) {
+  .category-nav { top: 4rem; }
 }
 
 a:focus-visible, button:focus-visible, [tabindex]:focus-visible, summary:focus-visible {

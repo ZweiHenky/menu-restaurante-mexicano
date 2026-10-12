@@ -1,0 +1,56 @@
+---
+import { menu, bowls } from '../data/menu';
+
+const categories = menu.flatMap((section) => [
+  { id: section.id, title: section.title },
+  ...(section.id === 'burritos' ? [{ id: bowls.id, title: bowls.title }] : []),
+]);
+---
+
+<nav class="category-nav" aria-label="Menu categories">
+  <div class="mx-auto flex max-w-6xl items-center px-5 sm:px-8">
+    <span class="mr-6 hidden shrink-0 font-semibold text-cactus-400 sm:block">Our menu</span>
+    <div class="category-scroll flex min-w-0 flex-1 gap-6 overflow-x-auto">
+      {categories.map((category) => (
+        <a class="category-link shrink-0" href={`#${category.id}`} data-category={category.id}>
+          {category.title}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navigation = document.querySelector<HTMLElement>('.category-nav');
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-category]'));
+  const sections = links.map((link) => document.getElementById(link.dataset.category!));
+  let current = '';
+  let queued = false;
+
+  function updateCategory() {
+    queued = false;
+    if (!navigation) return;
+    const threshold = navigation.getBoundingClientRect().bottom + 32;
+    let active = '';
+    sections.forEach((section) => {
+      if (section && section.getBoundingClientRect().top <= threshold) active = section.id;
+    });
+    if (active === current) return;
+    current = active;
+    links.forEach((link) => {
+      if (link.dataset.category === active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+
+  function scheduleUpdate() {
+    if (!queued) {
+      queued = true;
+      requestAnimationFrame(updateCategory);
+    }
+  }
+
+  window.addEventListener('scroll', scheduleUpdate, { passive: true });
+  window.addEventListener('resize', scheduleUpdate);
+  updateCategory();
+</script>
