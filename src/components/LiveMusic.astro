@@ -1,0 +1,53 @@
+---
+import type { LiveMusicEvent } from '../data/restaurant';
+
+interface Props {
+  event: LiveMusicEvent;
+}
+
+const { event } = Astro.props;
+---
+
+<section
+  id="live-music"
+  aria-labelledby="live-music-title"
+  class="relative isolate overflow-hidden border-y-2 border-mustard-500/60 bg-cactus-700"
+>
+  <div
+    class="pointer-events-none absolute inset-0 -z-10"
+    style="background: radial-gradient(ellipse at 50% 0%, #354b36 0%, #1c2920 65%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-12 text-center sm:px-8 sm:py-16">
+    <div class="mb-5 flex items-center justify-center gap-5 text-2xl text-cactus-800" aria-hidden="true">
+      <span class="h-px w-12 bg-mustard-500 sm:w-20"></span>
+      <span>♪ ♫ ♪</span>
+      <span class="h-px w-12 bg-mustard-500 sm:w-20"></span>
+    </div>
+
+    <h2
+      id="live-music-title"
+      class="section-title w-full text-[clamp(2.25rem,10vw,4.5rem)] leading-tight text-sand-50"
+    >
+      {event.title}
+    </h2>
+    <p class="mt-4 text-xl font-bold text-cactus-800 sm:text-2xl">{event.date}</p>
+
+    <ul class="mt-6 flex w-full flex-wrap items-center justify-center gap-3" aria-label="Event specials">
+      {event.offers.map((offer) => (
+        <li class="rounded-full border border-sand-50/15 bg-mustard-500 px-5 py-2 text-sm font-bold text-sand-50 sm:text-base">
+          {offer}
+        </li>
+      ))}
+    </ul>
+    <p class="mt-4 text-xl font-semibold text-sand-50 sm:text-2xl">From {event.time}</p>
+
+    <div class="relative mt-8 w-full max-w-sm border-2 border-dashed border-mustard-500 bg-black/20 px-5 py-6 shadow-[0_12px_30px_-10px_rgba(0,0,0,0.45)] sm:px-8">
+      <p class="text-xl font-semibold text-sand-50 sm:text-2xl">{event.promo.name}</p>
+      <p class="menu-price mt-4 inline-block rounded-sm bg-mustard-500 px-5 py-2 font-display text-5xl leading-tight text-sand-50 sm:text-6xl">
+        {event.promo.price}
+      </p>
+    </div>
+  </div>
+</section>

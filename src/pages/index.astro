@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import LiveMusic from '../components/LiveMusic.astro';
 import CategoryNav from '../components/CategoryNav.astro';
 import NoticeBanner from '../components/NoticeBanner.astro';
 import MenuSection from '../components/MenuSection.astro';
@@ -8,6 +9,7 @@ import MeatOptions from '../components/MeatOptions.astro';
 import BurritoBowls from '../components/BurritoBowls.astro';
 import Info from '../components/Info.astro';
 import { menu } from '../data/menu';
+import { liveMusic } from '../data/restaurant';
 
 // Bowls render as their own block right after the Burritos section.
 const splitAt = menu.findIndex((section) => section.id === 'burritos') + 1;
@@ -17,6 +19,7 @@ const afterBowls = menu.slice(splitAt);
 
 <BaseLayout>
   <Hero />
+  {liveMusic && <LiveMusic event={liveMusic} />}
   <NoticeBanner />
   <CategoryNav />
 

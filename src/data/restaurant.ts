@@ -20,6 +20,29 @@ export const restaurant = {
   instagram: '@mariastacoccomer',
 } as const;
 
+export interface LiveMusicEvent {
+  title: string;
+  date: string;
+  offers: string[];
+  time: string;
+  promo: {
+    name: string;
+    price: string;
+  };
+}
+
+// Set to null when there is no event to hide the Live Music section.
+export const liveMusic: LiveMusicEvent | null = {
+  title: 'Live Music!',
+  date: 'Friday, October 16',
+  offers: ['Ladies Night', 'Happy Hour'],
+  time: '5–8 PM',
+  promo: {
+    name: "Maria's Margarita",
+    price: '$9.99',
+  },
+};
+
 export const meatOptions = {
   general: [
     { label: 'Asada', value: 'Beef Steak' },

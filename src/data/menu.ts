@@ -264,6 +264,12 @@ export const menu: MenuSection[] = [
           'Large Shrimp sautéed with fresh mushrooms, and onions in a house made garlic sauce served with rice, beans and corn or flour tortillas.',
         price: '$23.95',
       },
+      {
+        name: 'Enchiladas de Camaron',
+        description:
+          '2 flour tortillas filled with shrimp, onions, tomatoes, topped with a sour cream based sauce, served with rice, fried beans, garnished with lettuce, tomatoes.',
+        price: '$22.95',
+      },
     ],
   },
   {
