@@ -442,6 +442,10 @@ export const menu: MenuSection[] = [
         price: '$14.00',
       },
       {
+        name: 'Cadillac Margarita',
+        price: '$17.00',
+      },
+      {
         name: 'Michelada Regular',
         price: '$15.00',
       },
