@@ -122,7 +122,7 @@ export const menu: MenuSection[] = [
       {
         name: 'Carne Asada',
         description:
-          'Thinly Sliced Skirt Steak Seasoned and Charbroiled to perfection garnished with guacamole, green onions. Served with rice and beans and hand-made corn tortillas.',
+          'Thinly Sliced Skirt Steak Seasoned and Charbroiled to perfection garnished with guacamole, green onions. Served with rice and beans and hand-made corn tortillas or flour tortillas.',
         price: '$26.95',
         tag: 'Signature',
         image: carneAsada,
@@ -254,14 +254,14 @@ export const menu: MenuSection[] = [
       {
         name: 'Camarones A La Diabla',
         description:
-          'Large Shrimp sautéed with fresh mushrooms in a very spicy sauce (Picoso!) served with rice, beans and hand-made corn tortillas.',
+          'Large Shrimp sautéed with fresh mushrooms in a very spicy sauce (Picoso!) served with rice, beans and hand-made corn tortillas or flour tortillas.',
         price: '$23.95',
         tag: 'Spicy',
       },
       {
         name: 'Camarones Al Mojo De Ajo',
         description:
-          'Large Shrimp sautéed with fresh mushrooms, and onions in a house made garlic sauce served with rice, beans and hand-made corn tortillas.',
+          'Large Shrimp sautéed with fresh mushrooms, and onions in a house made garlic sauce served with rice, beans and hand-made corn tortillas or flour tortillas.',
         price: '$23.95',
       },
       {
@@ -280,31 +280,31 @@ export const menu: MenuSection[] = [
       {
         name: 'Mar Y Tierra',
         description:
-          'Grilled strips of Skirt Steak, Shrimp, Chicken, onions, bell peppers served with rice, refried beans and hand-made corn tortillas.',
+          'Grilled strips of Skirt Steak, Shrimp, Chicken, onions, bell peppers served with rice, refried beans and hand-made corn tortillas or flour tortillas.',
         price: '$29.95',
       },
       {
         name: 'Chicken Fajitas',
         description:
-          'Grilled Strips of Chicken, onions, bell peppers served with refried beans, rice and hand-made corn tortillas.',
+          'Grilled Strips of Chicken, onions, bell peppers served with refried beans, rice and hand-made corn tortillas or flour tortillas.',
         price: '$24.95',
       },
       {
         name: 'Beef Fajitas',
         description:
-          'Grilled Strips of Skirt Steak, onions, bell peppers served with refried beans, rice and hand-made corn tortillas.',
+          'Grilled Strips of Skirt Steak, onions, bell peppers served with refried beans, rice and hand-made corn tortillas or flour tortillas.',
         price: '$24.95',
       },
       {
         name: 'Shrimp Fajitas',
         description:
-          'Grilled Shrimp, onions, bell peppers served with refried beans, rice and hand-made corn tortillas.',
+          'Grilled Shrimp, onions, bell peppers served with refried beans, rice and hand-made corn tortillas or flour tortillas.',
         price: '$24.95',
       },
       {
         name: 'Pollo A La Crema',
         description:
-          'Tender strips of Chicken cooked with our own special creamy mushroom Sauce, served with rice, refried beans and hand-made corn tortillas.',
+          'Tender strips of Chicken cooked with our own special creamy mushroom Sauce, served with rice, refried beans and hand-made corn tortillas or flour tortillas.',
         price: '$19.95',
       },
     ],
