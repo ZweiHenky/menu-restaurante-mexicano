@@ -281,7 +281,7 @@ export const menu: MenuSection[] = [
         name: 'Mar Y Tierra',
         description:
           'Grilled strips of Skirt Steak, Shrimp, Chicken, onions, bell peppers served with rice, refried beans and hand-made corn tortillas or flour tortillas.',
-        price: '$29.95',
+        price: '$27.95',
       },
       {
         name: 'Chicken Fajitas',
