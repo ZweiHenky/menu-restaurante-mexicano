@@ -128,7 +128,7 @@ export const menu: MenuSection[] = [
         image: carneAsada,
       },
       {
-        name: 'Flautas De Pollo',
+        name: 'Flautas',
         description:
           'Two large flautas made with corn tortillas filled with shredded beef OR Chicken, deep fried topped with, sour cream, cotija cheese, lettuce, tomatoes, served with rice and beans.',
         price: '$16.95',
@@ -407,6 +407,10 @@ export const menu: MenuSection[] = [
         description: 'Fresa, Chocolate, Caramelo',
         price: '$4.99',
       },
+      {
+        name: 'Cheesecake',
+        price: '$4.99',
+      },
     ],
   },
   {
@@ -437,6 +441,14 @@ export const menu: MenuSection[] = [
     title: 'Alcohol',
     subtitle: 'Cheers!',
     items: [
+      {
+        name: 'Red Wine',
+        price: '$6.00',
+      },
+      {
+        name: 'White Wine',
+        price: '$6.00',
+      },
       {
         name: 'Beer',
         price: '$5.00',
